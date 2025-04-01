@@ -1,0 +1,12 @@
+create table public.posts (
+  id serial not null,
+  user_id uuid null,
+  content text not null,
+  image_url text null,
+  likes integer null default 0,
+  comments integer null default 0,
+  created_at timestamp without time zone null default now(),
+  tags text[] null,
+  constraint posts_pkey primary key (id),
+  constraint posts_user_id_fkey foreign KEY (user_id) references profiles (id) on delete CASCADE
+) TABLESPACE pg_default;
